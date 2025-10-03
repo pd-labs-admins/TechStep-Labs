@@ -1,0 +1,189 @@
+annotations: []
+smart_annotations: []
+nodes:
+  - boot_disk_size: null
+    configuration:
+      - name: nxos_config.txt
+        content: |-
+          # workaround for booting to loader> prompt
+          echo 'from cli import cli' > set_boot.py
+          echo 'import json' >> set_boot.py
+          echo 'import os' >> set_boot.py
+          echo 'import time' >> set_boot.py
+          echo 'bootimage = json.loads(cli("show version | json"))["nxos_file_name"]' >> set_boot.py
+          echo 'set_boot = cli("conf t ; boot nxos {} ; no event manager applet BOOTCONFIG".format(bootimage))' >> set_boot.py
+          echo 'i = 0' >> set_boot.py
+          echo 'while i < 10:' >> set_boot.py
+          echo '    try:' >> set_boot.py
+          echo '        save_config = cli("copy running-config startup-config")' >> set_boot.py
+          echo '        break' >> set_boot.py
+          echo '    except Exception:' >> set_boot.py
+          echo '        i += 1' >> set_boot.py
+          echo '        time.sleep(1)' >> set_boot.py
+          echo 'os.remove("/bootflash/set_boot.py")' >> set_boot.py
+          event manager applet BOOTCONFIG
+           event syslog pattern "Configured from vty"
+           action 1.0 cli python bootflash:set_boot.py
+          # minimum needed config to login
+          no password strength-check
+          username admin role network-admin
+          username admin password cisco role network-admin
+          username cisco role network-admin
+          username cisco password cisco role network-admin
+
+          hostname dev2
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n0
+    image_definition: null
+    label: dev2
+    node_definition: nxosv9000
+    parameters: {}
+    ram: null
+    tags: []
+    x: 160
+    y: 0
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: mgmt0
+        mac_address: null
+        slot: 0
+        type: physical
+      - id: i2
+        label: Ethernet1/1
+        mac_address: null
+        slot: 1
+        type: physical
+      - id: i3
+        label: Ethernet1/2
+        mac_address: null
+        slot: 2
+        type: physical
+      - id: i4
+        label: Ethernet1/3
+        mac_address: null
+        slot: 3
+        type: physical
+      - id: i5
+        label: Ethernet1/4
+        mac_address: null
+        slot: 4
+        type: physical
+  - boot_disk_size: null
+    configuration:
+      - name: nxos_config.txt
+        content: |-
+          # workaround for booting to loader> prompt
+          echo 'from cli import cli' > set_boot.py
+          echo 'import json' >> set_boot.py
+          echo 'import os' >> set_boot.py
+          echo 'import time' >> set_boot.py
+          echo 'bootimage = json.loads(cli("show version | json"))["nxos_file_name"]' >> set_boot.py
+          echo 'set_boot = cli("conf t ; boot nxos {} ; no event manager applet BOOTCONFIG".format(bootimage))' >> set_boot.py
+          echo 'i = 0' >> set_boot.py
+          echo 'while i < 10:' >> set_boot.py
+          echo '    try:' >> set_boot.py
+          echo '        save_config = cli("copy running-config startup-config")' >> set_boot.py
+          echo '        break' >> set_boot.py
+          echo '    except Exception:' >> set_boot.py
+          echo '        i += 1' >> set_boot.py
+          echo '        time.sleep(1)' >> set_boot.py
+          echo 'os.remove("/bootflash/set_boot.py")' >> set_boot.py
+          event manager applet BOOTCONFIG
+           event syslog pattern "Configured from vty"
+           action 1.0 cli python bootflash:set_boot.py
+          # minimum needed config to login
+          no password strength-check
+          username admin role network-admin
+          username admin password cisco role network-admin
+          username cisco role network-admin
+          username cisco password cisco role network-admin
+
+          hostname dev1
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n1
+    image_definition: null
+    label: dev1
+    node_definition: nxosv9000
+    parameters: {}
+    ram: null
+    tags: []
+    x: 0
+    y: 0
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: mgmt0
+        mac_address: null
+        slot: 0
+        type: physical
+      - id: i2
+        label: Ethernet1/1
+        mac_address: null
+        slot: 1
+        type: physical
+      - id: i3
+        label: Ethernet1/2
+        mac_address: null
+        slot: 2
+        type: physical
+      - id: i4
+        label: Ethernet1/3
+        mac_address: null
+        slot: 3
+        type: physical
+      - id: i5
+        label: Ethernet1/4
+        mac_address: null
+        slot: 4
+        type: physical
+links:
+  - id: l0
+    n1: n1
+    n2: n0
+    i1: i2
+    i2: i2
+    conditioning: {}
+    label: dev1-Ethernet1/1<->dev2-Ethernet1/1
+  - id: l1
+    n1: n1
+    n2: n0
+    i1: i3
+    i2: i3
+    conditioning: {}
+    label: dev1-Ethernet1/2<->dev2-Ethernet1/2
+  - id: l2
+    n1: n1
+    n2: n0
+    i1: i5
+    i2: i5
+    conditioning: {}
+    label: dev1-Ethernet1/4<->dev2-Ethernet1/4
+  - id: l3
+    n1: n1
+    n2: n0
+    i1: i4
+    i2: i4
+    conditioning: {}
+    label: dev1-Ethernet1/3<->dev2-Ethernet1/3
+lab:
+  description: '[演習][NX-OS]Port-channel構成'
+  notes: ''
+  title: '[演習][NX-OS]Port-channel構成'
+  version: 0.3.0
