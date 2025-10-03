@@ -527,7 +527,7 @@ links:
     conditioning: {}
     label: dev3a-GigabitEthernet0/3<->dev3b-GigabitEthernet0/3
 lab:
-  description: '[演習][ASA]冗長構成'
-  notes: ''
-  title: '[演習][ASA]冗長構成'
+  description: "[ASA]冗長構成"
+  notes: ""
+  title: "[ASA]冗長構成"
   version: 0.3.0

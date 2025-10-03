@@ -128,7 +128,7 @@ links:
     conditioning: {}
     label: Switch-port1<->dev1-ens2
 lab:
-  description: '[演習][Ubuntu]1台構成'
-  notes: ''
-  title: '[演習][Ubuntu]1台構成'
+  description: "[Ubuntu]1台構成"
+  notes: ""
+  title: "[Ubuntu]1台構成"
   version: 0.3.0

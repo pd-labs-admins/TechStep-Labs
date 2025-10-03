@@ -297,7 +297,7 @@ links:
     conditioning: {}
     label: dev3-GigabitEthernet0/1<->dev4-Ethernet0/0
 lab:
-  description: '[演習][ASA]5台構成'
-  notes: ''
-  title: '[演習][ASA]5台構成'
+  description: "[ASA]5台構成"
+  notes: ""
+  title: "[ASA]5台構成"
   version: 0.3.0

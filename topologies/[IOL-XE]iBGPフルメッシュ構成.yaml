@@ -523,7 +523,7 @@ links:
     conditioning: {}
     label: sw1-port2<->dev3-Ethernet0/0
 lab:
-  description: '[演習][IOL-XE]iBGPフルメッシュ構成'
-  notes: ''
-  title: '[演習][IOL-XE]iBGPフルメッシュ構成'
+  description: "[IOL-XE]iBGPフルメッシュ構成"
+  notes: ""
+  title: "[IOL-XE]iBGPフルメッシュ構成"
   version: 0.3.0

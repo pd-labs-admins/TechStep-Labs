@@ -183,7 +183,7 @@ links:
     conditioning: {}
     label: dev1-Ethernet1/3<->dev2-Ethernet1/3
 lab:
-  description: '[演習][NX-OS]Port-channel構成'
-  notes: ''
-  title: '[演習][NX-OS]Port-channel構成'
+  description: "[NX-OS]Port-channel構成"
+  notes: ""
+  title: "[NX-OS]Port-channel構成"
   version: 0.3.0

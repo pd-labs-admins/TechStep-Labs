@@ -1078,7 +1078,7 @@ links:
     conditioning: {}
     label: OSK-L2-1-Ethernet1/0<->OSK-PC-A-ens2
 lab:
-  description: '[演習][応用]WAN3拠点構成'
-  notes: ''
-  title: '[演習][応用]WAN3拠点構成'
+  description: "[応用]WAN3拠点構成"
+  notes: ""
+  title: "[応用]WAN3拠点構成"
   version: 0.3.0

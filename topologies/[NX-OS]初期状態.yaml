@@ -152,7 +152,7 @@ links:
     conditioning: {}
     label: dev1-Ethernet1/2<->dev2-Ethernet1/1
 lab:
-  description: '[演習][NX-OS]初期状態'
-  notes: ''
-  title: '[演習][NX-OS]初期状態'
+  description: "[NX-OS]初期状態"
+  notes: ""
+  title: "[NX-OS]初期状態"
   version: 0.3.0

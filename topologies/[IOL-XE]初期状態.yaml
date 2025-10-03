@@ -100,7 +100,7 @@ links:
     conditioning: {}
     label: dev1-Ethernet0/1<->dev2-Ethernet0/0
 lab:
-  description: '[演習][IOL-XE]初期状態'
-  notes: ''
-  title: '[演習][IOL-XE]初期状態'
+  description: "[IOL-XE]初期状態"
+  notes: ""
+  title: "[IOL-XE]初期状態"
   version: 0.3.0

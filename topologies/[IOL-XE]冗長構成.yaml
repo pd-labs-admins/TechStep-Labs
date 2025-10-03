@@ -5,14 +5,14 @@ nodes:
     configuration:
       - name: ios_config.txt
         content: |-
-          hostname dev3
+          hostname dev2
           !
           interface Ethernet0/0
-           ip address 10.0.0.3 255.255.255.0
+           ip address 10.12.1.2 255.255.255.0
            no shutdown
           !
           interface Ethernet0/1
-           ip address 192.168.3.3 255.255.255.0
+           ip address 10.23.1.2 255.255.255.0
            no shutdown
           !
           end
@@ -22,13 +22,13 @@ nodes:
     hide_links: false
     id: n0
     image_definition: null
-    label: dev3
+    label: dev2
     node_definition: iol-xe
     parameters: {}
     ram: null
     tags: []
     x: 160
-    y: 240
+    y: 80
     interfaces:
       - id: i0
         label: Loopback0
@@ -58,10 +58,14 @@ nodes:
     configuration:
       - name: ios_config.txt
         content: |-
-          hostname dev91
+          hostname dev3a
           !
           interface Ethernet0/0
-           ip address 192.168.1.91 255.255.255.0
+           ip address 10.23.1.31 255.255.255.0
+           no shutdown
+          !
+          interface Ethernet0/1
+           ip address 10.34.1.31 255.255.255.0
            no shutdown
           !
           end
@@ -71,13 +75,66 @@ nodes:
     hide_links: false
     id: n1
     image_definition: null
-    label: dev91
+    label: dev3a
     node_definition: iol-xe
     parameters: {}
     ram: null
     tags: []
-    x: 0
-    y: 80
+    x: 480
+    y: 0
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        slot: 0
+        type: physical
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        slot: 1
+        type: physical
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        slot: 2
+        type: physical
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        slot: 3
+        type: physical
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          hostname dev3b
+          !
+          interface Ethernet0/0
+           ip address 10.23.1.32 255.255.255.0
+           no shutdown
+          !
+          interface Ethernet0/1
+           ip address 10.34.1.32 255.255.255.0
+           no shutdown
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n2
+    image_definition: null
+    label: dev3b
+    node_definition: iol-xe
+    parameters: {}
+    ram: null
+    tags: []
+    x: 480
+    y: 160
     interfaces:
       - id: i0
         label: Loopback0
@@ -109,15 +166,15 @@ nodes:
     cpus: null
     data_volume: null
     hide_links: false
-    id: n2
+    id: n3
     image_definition: null
-    label: sw1
+    label: sw2
     node_definition: unmanaged_switch
     parameters: {}
     ram: null
     tags: []
-    x: 320
-    y: 160
+    x: 640
+    y: 80
     interfaces:
       - id: i0
         label: port0
@@ -163,59 +220,14 @@ nodes:
     configuration:
       - name: ios_config.txt
         content: |-
-          hostname dev94
+          hostname dev4
           !
           interface Ethernet0/0
-           ip address 192.168.4.94 255.255.255.0
+           ip address 10.34.1.4 255.255.255.0
            no shutdown
           !
-          end
-    cpu_limit: null
-    cpus: null
-    data_volume: null
-    hide_links: false
-    id: n3
-    image_definition: null
-    label: dev94
-    node_definition: iol-xe
-    parameters: {}
-    ram: null
-    tags: []
-    x: 640
-    y: 240
-    interfaces:
-      - id: i0
-        label: Loopback0
-        mac_address: null
-        type: loopback
-      - id: i1
-        label: Ethernet0/0
-        mac_address: null
-        slot: 0
-        type: physical
-      - id: i2
-        label: Ethernet0/1
-        mac_address: null
-        slot: 1
-        type: physical
-      - id: i3
-        label: Ethernet0/2
-        mac_address: null
-        slot: 2
-        type: physical
-      - id: i4
-        label: Ethernet0/3
-        mac_address: null
-        slot: 3
-        type: physical
-  - boot_disk_size: null
-    configuration:
-      - name: ios_config.txt
-        content: |-
-          hostname dev92
-          !
-          interface Ethernet0/0
-           ip address 192.168.2.92 255.255.255.0
+          interface Ethernet0/1
+           ip address 10.45.1.4 255.255.255.0
            no shutdown
           !
           end
@@ -225,12 +237,12 @@ nodes:
     hide_links: false
     id: n4
     image_definition: null
-    label: dev92
+    label: dev4
     node_definition: iol-xe
     parameters: {}
     ram: null
     tags: []
-    x: 640
+    x: 800
     y: 80
     interfaces:
       - id: i0
@@ -258,53 +270,60 @@ nodes:
         slot: 3
         type: physical
   - boot_disk_size: null
-    configuration:
-      - name: ios_config.txt
-        content: |-
-          hostname dev93
-          !
-          interface Ethernet0/0
-           ip address 192.168.3.93 255.255.255.0
-           no shutdown
-          !
-          end
+    configuration: []
     cpu_limit: null
     cpus: null
     data_volume: null
     hide_links: false
     id: n5
     image_definition: null
-    label: dev93
-    node_definition: iol-xe
+    label: sw1
+    node_definition: unmanaged_switch
     parameters: {}
     ram: null
     tags: []
-    x: 0
-    y: 240
+    x: 320
+    y: 80
     interfaces:
       - id: i0
-        label: Loopback0
-        mac_address: null
-        type: loopback
-      - id: i1
-        label: Ethernet0/0
+        label: port0
         mac_address: null
         slot: 0
         type: physical
-      - id: i2
-        label: Ethernet0/1
+      - id: i1
+        label: port1
         mac_address: null
         slot: 1
         type: physical
-      - id: i3
-        label: Ethernet0/2
+      - id: i2
+        label: port2
         mac_address: null
         slot: 2
         type: physical
-      - id: i4
-        label: Ethernet0/3
+      - id: i3
+        label: port3
         mac_address: null
         slot: 3
+        type: physical
+      - id: i4
+        label: port4
+        mac_address: null
+        slot: 4
+        type: physical
+      - id: i5
+        label: port5
+        mac_address: null
+        slot: 5
+        type: physical
+      - id: i6
+        label: port6
+        mac_address: null
+        slot: 6
+        type: physical
+      - id: i7
+        label: port7
+        mac_address: null
+        slot: 7
         type: physical
   - boot_disk_size: null
     configuration:
@@ -313,11 +332,10 @@ nodes:
           hostname dev1
           !
           interface Ethernet0/0
-           ip address 10.0.0.1 255.255.255.0
-           no shutdown
+           shutdown
           !
           interface Ethernet0/1
-           ip address 192.168.1.1 255.255.255.0
+           ip address 10.12.1.1 255.255.255.0
            no shutdown
           !
           end
@@ -332,7 +350,7 @@ nodes:
     parameters: {}
     ram: null
     tags: []
-    x: 160
+    x: 0
     y: 80
     interfaces:
       - id: i0
@@ -363,11 +381,14 @@ nodes:
     configuration:
       - name: ios_config.txt
         content: |-
-          hostname dev51
+          hostname dev5
           !
           interface Ethernet0/0
-           ip address 10.0.0.51 255.255.255.0
+           ip address 10.45.1.5 255.255.255.0
            no shutdown
+          !
+          interface Ethernet0/1
+           shutdown
           !
           end
     cpu_limit: null
@@ -376,119 +397,13 @@ nodes:
     hide_links: false
     id: n7
     image_definition: null
-    label: dev51
+    label: dev5
     node_definition: iol-xe
     parameters: {}
     ram: null
     tags: []
-    x: 320
-    y: 0
-    interfaces:
-      - id: i0
-        label: Loopback0
-        mac_address: null
-        type: loopback
-      - id: i1
-        label: Ethernet0/0
-        mac_address: null
-        slot: 0
-        type: physical
-      - id: i2
-        label: Ethernet0/1
-        mac_address: null
-        slot: 1
-        type: physical
-      - id: i3
-        label: Ethernet0/2
-        mac_address: null
-        slot: 2
-        type: physical
-      - id: i4
-        label: Ethernet0/3
-        mac_address: null
-        slot: 3
-        type: physical
-  - boot_disk_size: null
-    configuration:
-      - name: ios_config.txt
-        content: |-
-          hostname dev2
-          !
-          interface Ethernet0/0
-           ip address 10.0.0.2 255.255.255.0
-           no shutdown
-          !
-          interface Ethernet0/1
-           ip address 192.168.2.2 255.255.255.0
-           no shutdown
-          !
-          end
-    cpu_limit: null
-    cpus: null
-    data_volume: null
-    hide_links: false
-    id: n8
-    image_definition: null
-    label: dev2
-    node_definition: iol-xe
-    parameters: {}
-    ram: null
-    tags: []
-    x: 480
+    x: 960
     y: 80
-    interfaces:
-      - id: i0
-        label: Loopback0
-        mac_address: null
-        type: loopback
-      - id: i1
-        label: Ethernet0/0
-        mac_address: null
-        slot: 0
-        type: physical
-      - id: i2
-        label: Ethernet0/1
-        mac_address: null
-        slot: 1
-        type: physical
-      - id: i3
-        label: Ethernet0/2
-        mac_address: null
-        slot: 2
-        type: physical
-      - id: i4
-        label: Ethernet0/3
-        mac_address: null
-        slot: 3
-        type: physical
-  - boot_disk_size: null
-    configuration:
-      - name: ios_config.txt
-        content: |-
-          hostname dev4
-          !
-          interface Ethernet0/0
-           ip address 10.0.0.4 255.255.255.0
-           no shutdown
-          !
-          interface Ethernet0/1
-           ip address 192.168.4.4 255.255.255.0
-           no shutdown
-          !
-          end
-    cpu_limit: null
-    cpus: null
-    data_volume: null
-    hide_links: false
-    id: n9
-    image_definition: null
-    label: dev4
-    node_definition: iol-xe
-    parameters: {}
-    ram: null
-    tags: []
-    x: 480
-    y: 240
     interfaces:
       - id: i0
         label: Loopback0
@@ -516,70 +431,63 @@ nodes:
         type: physical
 links:
   - id: l0
-    n1: n2
-    n2: n0
+    n1: n1
+    n2: n3
     i1: i2
-    i2: i1
+    i2: i0
     conditioning: {}
-    label: sw1-port2<->dev3-Ethernet0/0
+    label: dev3a-Ethernet0/1<->sw2-port0
   - id: l1
     n1: n2
-    n2: n7
-    i1: i4
-    i2: i1
-    conditioning: {}
-    label: sw1-port4<->dev51-Ethernet0/0
-  - id: l2
-    n1: n2
-    n2: n8
-    i1: i1
-    i2: i1
-    conditioning: {}
-    label: sw1-port1<->dev2-Ethernet0/0
-  - id: l3
-    n1: n9
     n2: n3
     i1: i2
     i2: i1
     conditioning: {}
-    label: dev4-Ethernet0/1<->dev94-Ethernet0/0
-  - id: l4
-    n1: n6
-    n2: n1
-    i1: i2
+    label: dev3b-Ethernet0/1<->sw2-port1
+  - id: l2
+    n1: n5
+    n2: n2
+    i1: i0
     i2: i1
     conditioning: {}
-    label: dev1-Ethernet0/1<->dev91-Ethernet0/0
-  - id: l5
-    n1: n8
+    label: sw1-port0<->dev3b-Ethernet0/0
+  - id: l3
+    n1: n3
     n2: n4
     i1: i2
     i2: i1
     conditioning: {}
-    label: dev2-Ethernet0/1<->dev92-Ethernet0/0
-  - id: l6
+    label: sw2-port2<->dev4-Ethernet0/0
+  - id: l4
     n1: n0
     n2: n5
     i1: i2
     i2: i1
     conditioning: {}
-    label: dev3-Ethernet0/1<->dev93-Ethernet0/0
+    label: dev2-Ethernet0/1<->sw1-port1
+  - id: l5
+    n1: n5
+    n2: n1
+    i1: i2
+    i2: i1
+    conditioning: {}
+    label: sw1-port2<->dev3a-Ethernet0/0
+  - id: l6
+    n1: n4
+    n2: n7
+    i1: i2
+    i2: i1
+    conditioning: {}
+    label: dev4-Ethernet0/1<->dev5-Ethernet0/0
   - id: l7
-    n1: n2
-    n2: n9
-    i1: i3
+    n1: n6
+    n2: n0
+    i1: i2
     i2: i1
     conditioning: {}
-    label: sw1-port3<->dev4-Ethernet0/0
-  - id: l8
-    n1: n2
-    n2: n6
-    i1: i0
-    i2: i1
-    conditioning: {}
-    label: sw1-port0<->dev1-Ethernet0/0
+    label: dev1-Ethernet0/1<->dev2-Ethernet0/0
 lab:
-  description: '[演習][IOL-XE]BGP_RR構成'
-  notes: ''
-  title: '[演習][IOL-XE]BGP_RR構成'
+  description: "[IOL-XE]冗長構成"
+  notes: ""
+  title: "[IOL-XE]冗長構成"
   version: 0.3.0

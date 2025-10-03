@@ -302,7 +302,7 @@ links:
     conditioning: {}
     label: OSK-WAN-Ethernet0/1<->OSK-LAN-Ethernet0/0
 lab:
-  description: '[演習][IOL-XE]WAN構成'
-  notes: ''
-  title: '[演習][IOL-XE]WAN構成'
+  description: "[IOL-XE]WAN構成"
+  notes: ""
+  title: "[IOL-XE]WAN構成"
   version: 0.3.0
