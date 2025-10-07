@@ -1,0 +1,150 @@
+annotations: []
+smart_annotations: []
+nodes:
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          hostname dev1
+          !
+          interface Ethernet0/0
+           ip address 10.12.1.1 255.255.255.0
+           no shutdown
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n0
+    image_definition: null
+    label: dev1
+    node_definition: iol-xe
+    parameters: {}
+    ram: 1024
+    tags: []
+    x: 320
+    y: 0
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: default
+        content: System Bridge
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n1
+    image_definition: null
+    label: Internet
+    node_definition: external_connector
+    parameters: {}
+    ram: null
+    tags: []
+    x: 0
+    y: 0
+    interfaces:
+      - id: i0
+        label: port
+        mac_address: null
+        type: physical
+        slot: 0
+  - boot_disk_size: null
+    configuration:
+      - name: user-data
+        content: |-
+          #cloud-config
+          hostname: ubuntu99
+          manage_etc_hosts: True
+          system_info:
+            default_user:
+              name: cisco
+          password: cisco
+          chpasswd: { expire: False }
+          ssh_pwauth: True
+          write_files:
+            - path: /etc/netplan/50-cloud-init.yaml
+              content: |
+                network:
+                  version: 2
+                  ethernets:
+                    ens2:
+                      dhcp4: true
+                      nameservers:
+                        addresses:
+                          - 1.1.1.1
+                          - 1.0.0.1
+                    ens3:
+                      addresses:
+                        - 10.12.1.99/24
+                      dhcp4: false
+          runcmd:
+            - sudo netplan apply
+    cpu_limit: null
+    cpus: 4
+    data_volume: null
+    hide_links: false
+    id: n2
+    image_definition: null
+    label: ubuntu99
+    node_definition: ubuntu
+    parameters: {}
+    ram: 2048
+    tags: []
+    x: 160
+    y: 0
+    interfaces:
+      - id: i0
+        label: ens2
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i1
+        label: ens3
+        mac_address: null
+        type: physical
+        slot: 1
+links:
+  - id: l0
+    n1: n2
+    n2: n0
+    i1: i1
+    i2: i1
+    conditioning: {}
+    label: ubuntu99-ens3<->dev1-Ethernet0/0
+  - id: l1
+    n1: n1
+    n2: n2
+    i1: i0
+    i2: i0
+    conditioning: {}
+    label: Internet-port<->ubuntu99-ens2
+lab:
+  description: ''
+  notes: ''
+  title: '[IOL-XE]1台＋Ubuntu_外部接続構成'
+  version: 0.3.0
