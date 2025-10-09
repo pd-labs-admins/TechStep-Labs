@@ -7,13 +7,6 @@ nodes:
         content: |-
           hostname dev2
           !
-          interface Ethernet0/0
-           ip address 10.12.1.2 255.255.255.0
-           no shutdown
-          !
-          interface Ethernet0/1
-           shutdown
-          !
           end
     cpu_limit: null
     cpus: null
@@ -58,13 +51,6 @@ nodes:
       - name: ios_config.txt
         content: |-
           hostname dev1
-          !
-          interface Ethernet0/0
-           shutdown
-          !
-          interface Ethernet0/1
-           ip address 10.12.1.1 255.255.255.0
-           no shutdown
           !
           end
     cpu_limit: null
@@ -114,7 +100,7 @@ links:
     conditioning: {}
     label: dev1-Ethernet0/1<->dev2-Ethernet0/0
 lab:
-  description: "[IOL-XE]2台構成"
+  description: "[IOS]初期状態"
   notes: ""
-  title: "[IOL-XE]2台構成"
+  title: "[IOS]初期状態"
   version: 0.3.0

@@ -82,7 +82,7 @@ links:
     conditioning: {}
     label: Internet-port<->dev1-Ethernet0/0
 lab:
-  description: ''
-  notes: ''
-  title: '[IOL-XE]1台_外部接続構成'
+  description: "[IOS]1台_外部接続構成"
+  notes: ""
+  title: "[IOS]1台_外部接続構成"
   version: 0.3.0
