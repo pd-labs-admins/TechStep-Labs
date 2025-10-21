@@ -3,48 +3,41 @@ smart_annotations: []
 nodes:
   - boot_disk_size: null
     configuration:
-      - name: default
-        content: System Bridge
-    cpu_limit: null
-    cpus: null
-    data_volume: null
-    hide_links: true
-    id: n0
-    image_definition: null
-    label: Internet
-    node_definition: external_connector
-    parameters: {}
-    ram: null
-    tags: []
-    x: 0
-    y: 0
-    interfaces:
-      - id: i0
-        label: port
-        mac_address: null
-        type: physical
-        slot: 0
-  - boot_disk_size: null
-    configuration:
       - name: ios_config.txt
         content: |-
           hostname dev1
           !
+          no ip domain lookup
+          !
           interface Ethernet0/0
-           ip address dhcp
+           ip address 10.0.0.1 255.255.255.0
            no shutdown
+          !
+          line con 0
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           length 0
+           stopbits 1
+          !
+          line vty 0 4
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           length 0
+           transport input all
           !
           end
     cpu_limit: null
     cpus: null
     data_volume: null
     hide_links: false
-    id: n1
+    id: n0
     image_definition: null
     label: dev1
     node_definition: iol-xe
     parameters: {}
-    ram: 1024
+    ram: null
     tags: []
     x: 160
     y: 0
@@ -73,16 +66,39 @@ nodes:
         mac_address: null
         type: physical
         slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: default
+        content: System Bridge
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n1
+    image_definition: null
+    label: Internet
+    node_definition: external_connector
+    parameters: {}
+    ram: null
+    tags: []
+    x: 0
+    y: 0
+    interfaces:
+      - id: i0
+        label: port
+        mac_address: null
+        type: physical
+        slot: 0
 links:
   - id: l0
-    n1: n0
-    n2: n1
+    n1: n1
+    n2: n0
     i1: i0
     i2: i1
     conditioning: {}
     label: Internet-port<->dev1-Ethernet0/0
 lab:
-  description: "[IOS]1台_外部接続構成"
-  notes: ""
-  title: "[IOS]1台_外部接続構成"
+  description: '[IOS]1台＋外部接続'
+  notes: ''
+  title: '[IOS]1台＋外部接続'
   version: 0.3.0
