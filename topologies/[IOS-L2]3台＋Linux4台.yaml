@@ -27,7 +27,7 @@ nodes:
                   ethernets:
                     ens3:
                       addresses:
-                        - 10.10.0.1/24
+                        - 10.0.0.1/24
                       dhcp4: false
           runcmd:
             - sudo netplan apply
@@ -81,7 +81,7 @@ nodes:
                   ethernets:
                     ens2:
                       addresses:
-                        - 10.10.0.5/24
+                        - 10.0.0.5/24
                       dhcp4: false
           runcmd:
             - sudo netplan apply
@@ -276,7 +276,7 @@ nodes:
                   ethernets:
                     ens3:
                       addresses:
-                        - 10.20.0.1/24
+                        - 20.0.0.1/24
                       dhcp4: false
           runcmd:
             - sudo netplan apply
@@ -403,7 +403,7 @@ nodes:
                   ethernets:
                     ens2:
                       addresses:
-                        - 10.20.0.5/24
+                        - 20.0.0.5/24
                       dhcp4: false
           runcmd:
             - sudo netplan apply
