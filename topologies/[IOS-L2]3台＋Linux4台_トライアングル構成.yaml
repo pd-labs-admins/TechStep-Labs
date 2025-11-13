@@ -5,7 +5,7 @@ nodes:
     configuration:
       - name: ios_config.txt
         content: |-
-          hostname dev1
+          hostname dev2
           !
           no ip domain lookup
           !
@@ -32,6 +32,7 @@ nodes:
            exec-timeout 300 0
            privilege level 15
            logging synchronous
+           no login
            length 0
            transport input all
           !
@@ -42,13 +43,13 @@ nodes:
     hide_links: false
     id: n0
     image_definition: null
-    label: dev1
+    label: dev2
     node_definition: ioll2-xe
     parameters: {}
     ram: null
     tags: []
-    x: 160
-    y: 80
+    x: 320
+    y: 0
     interfaces:
       - id: i0
         label: Loopback0
@@ -105,6 +106,7 @@ nodes:
            exec-timeout 300 0
            privilege level 15
            logging synchronous
+           no login
            length 0
            transport input all
           !
@@ -152,55 +154,6 @@ nodes:
       - name: user-data
         content: |-
           #cloud-config
-          hostname: dev205
-          manage_etc_hosts: True
-          disable_root: false
-          system_info:
-            default_user:
-              name: cisco
-          chpasswd:
-            expire: false
-            list: |
-              cisco:cisco
-              root:Passw0rd!
-          ssh_pwauth: True
-          timezone: Asia/Tokyo
-          write_files:
-            - path: /etc/netplan/50-cloud-init.yaml
-              content: |
-                network:
-                  version: 2
-                  ethernets:
-                    ens2:
-                      addresses:
-                        - 20.0.0.5/24
-                      dhcp4: false
-          runcmd:
-            - sudo netplan apply
-    cpu_limit: null
-    cpus: null
-    data_volume: null
-    hide_links: false
-    id: n2
-    image_definition: null
-    label: dev205
-    node_definition: ubuntu
-    parameters: {}
-    ram: null
-    tags: []
-    x: 640
-    y: 160
-    interfaces:
-      - id: i0
-        label: ens2
-        mac_address: null
-        type: physical
-        slot: 0
-  - boot_disk_size: null
-    configuration:
-      - name: user-data
-        content: |-
-          #cloud-config
           hostname: dev201
           manage_etc_hosts: True
           disable_root: false
@@ -230,7 +183,7 @@ nodes:
     cpus: null
     data_volume: null
     hide_links: false
-    id: n3
+    id: n2
     image_definition: null
     label: dev201
     node_definition: ubuntu
@@ -252,9 +205,58 @@ nodes:
         slot: 1
   - boot_disk_size: null
     configuration:
+      - name: user-data
+        content: |-
+          #cloud-config
+          hostname: dev205
+          manage_etc_hosts: True
+          disable_root: false
+          system_info:
+            default_user:
+              name: cisco
+          chpasswd:
+            expire: false
+            list: |
+              cisco:cisco
+              root:Passw0rd!
+          ssh_pwauth: True
+          timezone: Asia/Tokyo
+          write_files:
+            - path: /etc/netplan/50-cloud-init.yaml
+              content: |
+                network:
+                  version: 2
+                  ethernets:
+                    ens2:
+                      addresses:
+                        - 20.0.0.5/24
+                      dhcp4: false
+          runcmd:
+            - sudo netplan apply
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n3
+    image_definition: null
+    label: dev205
+    node_definition: ubuntu
+    parameters: {}
+    ram: null
+    tags: []
+    x: 640
+    y: 160
+    interfaces:
+      - id: i0
+        label: ens2
+        mac_address: null
+        type: physical
+        slot: 0
+  - boot_disk_size: null
+    configuration:
       - name: ios_config.txt
         content: |-
-          hostname dev2
+          hostname dev1
           !
           no ip domain lookup
           !
@@ -281,6 +283,7 @@ nodes:
            exec-timeout 300 0
            privilege level 15
            logging synchronous
+           no login
            length 0
            transport input all
           !
@@ -291,13 +294,13 @@ nodes:
     hide_links: false
     id: n4
     image_definition: null
-    label: dev2
+    label: dev1
     node_definition: ioll2-xe
     parameters: {}
     ram: null
     tags: []
-    x: 320
-    y: 0
+    x: 160
+    y: 80
     interfaces:
       - id: i0
         label: Loopback0
@@ -323,55 +326,6 @@ nodes:
         mac_address: null
         type: physical
         slot: 3
-  - boot_disk_size: null
-    configuration:
-      - name: user-data
-        content: |-
-          #cloud-config
-          hostname: dev105
-          manage_etc_hosts: True
-          disable_root: false
-          system_info:
-            default_user:
-              name: cisco
-          chpasswd:
-            expire: false
-            list: |
-              cisco:cisco
-              root:Passw0rd!
-          ssh_pwauth: True
-          timezone: Asia/Tokyo
-          write_files:
-            - path: /etc/netplan/50-cloud-init.yaml
-              content: |
-                network:
-                  version: 2
-                  ethernets:
-                    ens2:
-                      addresses:
-                        - 10.0.0.5/24
-                      dhcp4: false
-          runcmd:
-            - sudo netplan apply
-    cpu_limit: null
-    cpus: null
-    data_volume: null
-    hide_links: false
-    id: n5
-    image_definition: null
-    label: dev105
-    node_definition: ubuntu
-    parameters: {}
-    ram: null
-    tags: []
-    x: 640
-    y: 0
-    interfaces:
-      - id: i0
-        label: ens2
-        mac_address: null
-        type: physical
-        slot: 0
   - boot_disk_size: null
     configuration:
       - name: user-data
@@ -406,7 +360,7 @@ nodes:
     cpus: null
     data_volume: null
     hide_links: false
-    id: n6
+    id: n5
     image_definition: null
     label: dev101
     node_definition: ubuntu
@@ -426,56 +380,105 @@ nodes:
         mac_address: null
         type: physical
         slot: 1
+  - boot_disk_size: null
+    configuration:
+      - name: user-data
+        content: |-
+          #cloud-config
+          hostname: dev105
+          manage_etc_hosts: True
+          disable_root: false
+          system_info:
+            default_user:
+              name: cisco
+          chpasswd:
+            expire: false
+            list: |
+              cisco:cisco
+              root:Passw0rd!
+          ssh_pwauth: True
+          timezone: Asia/Tokyo
+          write_files:
+            - path: /etc/netplan/50-cloud-init.yaml
+              content: |
+                network:
+                  version: 2
+                  ethernets:
+                    ens2:
+                      addresses:
+                        - 10.0.0.5/24
+                      dhcp4: false
+          runcmd:
+            - sudo netplan apply
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n6
+    image_definition: null
+    label: dev105
+    node_definition: ubuntu
+    parameters: {}
+    ram: null
+    tags: []
+    x: 640
+    y: 0
+    interfaces:
+      - id: i0
+        label: ens2
+        mac_address: null
+        type: physical
+        slot: 0
 links:
   - id: l0
     n1: n0
-    n2: n1
-    i1: i4
-    i2: i2
-    conditioning: {}
-    label: dev1-Ethernet0/3<->dev3-Ethernet0/1
-  - id: l1
-    n1: n3
-    n2: n0
-    i1: i1
-    i2: i2
-    conditioning: {}
-    label: dev201-ens3<->dev1-Ethernet0/1
-  - id: l2
-    n1: n1
-    n2: n2
-    i1: i4
-    i2: i0
-    conditioning: {}
-    label: dev3-Ethernet0/3<->dev205-ens2
-  - id: l3
-    n1: n0
-    n2: n4
-    i1: i3
-    i2: i1
-    conditioning: {}
-    label: dev1-Ethernet0/2<->dev2-Ethernet0/0
-  - id: l4
-    n1: n4
     n2: n1
     i1: i2
     i2: i1
     conditioning: {}
     label: dev2-Ethernet0/1<->dev3-Ethernet0/0
-  - id: l5
+  - id: l1
     n1: n1
-    n2: n5
+    n2: n6
     i1: i3
     i2: i0
     conditioning: {}
     label: dev3-Ethernet0/2<->dev105-ens2
-  - id: l6
-    n1: n6
+  - id: l2
+    n1: n1
+    n2: n3
+    i1: i4
+    i2: i0
+    conditioning: {}
+    label: dev3-Ethernet0/3<->dev205-ens2
+  - id: l3
+    n1: n4
+    n2: n1
+    i1: i4
+    i2: i2
+    conditioning: {}
+    label: dev1-Ethernet0/3<->dev3-Ethernet0/1
+  - id: l4
+    n1: n4
     n2: n0
+    i1: i3
+    i2: i1
+    conditioning: {}
+    label: dev1-Ethernet0/2<->dev2-Ethernet0/0
+  - id: l5
+    n1: n5
+    n2: n4
     i1: i1
     i2: i1
     conditioning: {}
     label: dev101-ens3<->dev1-Ethernet0/0
+  - id: l6
+    n1: n2
+    n2: n4
+    i1: i1
+    i2: i2
+    conditioning: {}
+    label: dev201-ens3<->dev1-Ethernet0/1
 lab:
   description: '[IOS-L2]3台＋Linux4台_トライアングル構成'
   notes: ''
