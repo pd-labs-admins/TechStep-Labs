@@ -1,0 +1,152 @@
+annotations: []
+smart_annotations: []
+nodes:
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          hostname dev1
+          !
+          no ip domain lookup
+          !
+          interface Ethernet0/0
+           no shutdown
+          !
+          interface Ethernet0/1
+           no shutdown
+          !
+          line con 0
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           length 0
+           stopbits 1
+          !
+          line vty 0 4
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           no login
+           length 0
+           transport input all
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n1
+    image_definition: null
+    label: dev1
+    node_definition: iol-xe
+    parameters: {}
+    ram: null
+    tags: []
+    x: 0
+    y: 0
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          hostname dev2
+          !
+          no ip domain lookup
+          !
+          interface Ethernet0/0
+           no shutdown
+          !
+          interface Ethernet0/1
+           no shutdown
+          !
+          line con 0
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           length 0
+           stopbits 1
+          !
+          line vty 0 4
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           no login
+           length 0
+           transport input all
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n0
+    image_definition: null
+    label: dev2
+    node_definition: ioll2-xe
+    parameters: {}
+    ram: null
+    tags: []
+    x: 160
+    y: 0
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+links:
+  - id: l0
+    n1: n1
+    n2: n0
+    i1: i2
+    i2: i1
+    conditioning: {}
+    label: dev1-Ethernet0/1<->dev2-Ethernet0/0
+lab:
+  description: '[IOS]1台＋[IOS-L2]1台'
+  notes: ''
+  title: '[IOS]1台＋[IOS-L2]1台'
+  version: 0.3.0
