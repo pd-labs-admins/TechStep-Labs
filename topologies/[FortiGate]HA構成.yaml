@@ -1,0 +1,633 @@
+annotations: []
+smart_annotations: []
+nodes:
+  - boot_disk_size: null
+    configuration:
+      - name: boot.sh
+        content: |-
+          ip address add dev eth0 10.0.45.53/24
+          ip link set dev eth0 up
+          ip route add 0.0.0.0/ via 10.0.45.4 dev eth0
+          echo "Web-53" > /usr/share/nginx/html/index.html
+          exit 0
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n0
+    image_definition: null
+    label: Web-53
+    node_definition: nginx
+    parameters: {}
+    ram: null
+    tags: []
+    x: 640
+    y: 240
+    interfaces:
+      - id: i0
+        label: eth0
+        mac_address: null
+        type: physical
+        slot: 0
+  - boot_disk_size: null
+    configuration:
+      - name: boot.sh
+        content: |-
+          ip address add dev eth0 10.0.45.51/24
+          ip link set dev eth0 up
+          ip route add 0.0.0.0/ via 10.0.45.4 dev eth0
+          echo "Web-51" > /usr/share/nginx/html/index.html
+          exit 0
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n1
+    image_definition: null
+    label: Web-51
+    node_definition: nginx
+    parameters: {}
+    ram: null
+    tags: []
+    x: 640
+    y: 80
+    interfaces:
+      - id: i0
+        label: eth0
+        mac_address: null
+        type: physical
+        slot: 0
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          hostname L3SW-2
+          !
+          no ip domain lookup
+          !
+          vtp mode transparent
+          !
+          vlan 12,23
+          !
+          interface Ethernet0/0
+           switchport access vlan 12
+           switchport mode access
+           no shutdown
+          !
+          interface Ethernet0/1
+           switchport access vlan 23
+           switchport mode access
+           no shutdown
+          !
+          interface Ethernet0/2
+           switchport access vlan 23
+           switchport mode access
+           no shutdown
+          !
+          interface Vlan12
+           ip address 10.0.12.2 255.255.255.0
+           no shutdown
+          !
+          interface Vlan23
+           ip address 10.0.23.2 255.255.255.0
+           no shutdown
+          !
+          ip route 0.0.0.0 0.0.0.0 10.0.23.30
+          !
+          line con 0
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           length 0
+           stopbits 1
+          !
+          line vty 0 4
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           no login
+           length 0
+           transport input all
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n2
+    image_definition: null
+    label: L3SW-2
+    node_definition: ioll2-xe
+    parameters: {}
+    ram: null
+    tags: []
+    x: 160
+    y: 160
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: openstack/latest/user_data
+        content: |-
+          config system global
+              set admintimeout 480
+              set alias "FortiGate-31"
+              set hostname "FortiGate-31"
+          end
+          config system interface
+              edit "port1"
+                  set vdom "root"
+                  set mode dhcp
+                  set allowaccess ping https ssh http telnet fgfm
+                  set type physical
+                  set snmp-index 1
+              next
+          end
+          config system password-policy
+              set status disable
+          end
+          config system admin
+              edit "admin"
+                  set accprofile "super_admin"
+                  set vdom "root"
+                  set password "Passw0rd!"
+              next
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n3
+    image_definition: fortigate-7-0-19
+    label: FortiGate-31
+    node_definition: fortigate
+    parameters: {}
+    ram: null
+    tags: []
+    x: 320
+    y: 80
+    interfaces:
+      - id: i0
+        label: p1
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i1
+        label: p2
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i2
+        label: p3
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i3
+        label: p4
+        mac_address: null
+        type: physical
+        slot: 3
+      - id: i4
+        label: p5
+        mac_address: null
+        type: physical
+        slot: 4
+  - boot_disk_size: null
+    configuration:
+      - name: node.cfg
+        content: |-
+          hostname desktop-1
+
+          # configurable user account
+          USERNAME=admin
+          PASSWORD=Passw0rd!
+
+          # configure networking
+          ifconfig eth0 10.0.12.1 netmask 255.255.255.0 up
+          ip route add default via 10.0.12.2
+
+          # disable screen lock
+          xset s off
+          xset -dpms
+
+          # jp keyboard
+          setxkbmap -model acer_laptop -layout jp -option japan
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n4
+    image_definition: null
+    label: Desktop-1
+    node_definition: desktop
+    parameters: {}
+    ram: null
+    tags: []
+    x: 0
+    y: 160
+    interfaces:
+      - id: i0
+        label: eth0
+        mac_address: null
+        type: physical
+        slot: 0
+  - boot_disk_size: null
+    configuration:
+      - name: default
+        content: System Bridge
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: true
+    id: n5
+    image_definition: null
+    label: external (pd-lab)
+    node_definition: external_connector
+    parameters: {}
+    ram: null
+    tags: []
+    x: 80
+    y: 0
+    interfaces:
+      - id: i0
+        label: port
+        mac_address: null
+        type: physical
+        slot: 0
+  - boot_disk_size: null
+    configuration:
+      - name: boot.sh
+        content: |-
+          ip address add dev eth0 10.0.45.52/24
+          ip link set dev eth0 up
+          ip route add 0.0.0.0/ via 10.0.45.4 dev eth0
+          echo "Web-52" > /usr/share/nginx/html/index.html
+          exit 0
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n6
+    image_definition: null
+    label: Web-52
+    node_definition: nginx
+    parameters: {}
+    ram: null
+    tags: []
+    x: 640
+    y: 160
+    interfaces:
+      - id: i0
+        label: eth0
+        mac_address: null
+        type: physical
+        slot: 0
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          hostname L3SW-4
+          !
+          no ip domain lookup
+          !
+          vtp mode transparent
+          !
+          vlan 34,45
+          !
+          interface Ethernet0/0
+           switchport access vlan 34
+           switchport mode access
+           no shutdown
+          !
+          interface Ethernet0/1
+           switchport access vlan 34
+           switchport mode access
+           no shutdown
+          !
+          interface Ethernet0/2
+           switchport access vlan 45
+           switchport mode access
+           no shutdown
+          !
+          interface Ethernet0/3
+           switchport access vlan 45
+           switchport mode access
+           no shutdown
+          !
+          interface Ethernet1/0
+           switchport access vlan 45
+           switchport mode access
+           no shutdown
+          !
+          interface Vlan34
+           ip address 10.0.34.4 255.255.255.0
+           no shutdown
+          !
+          interface Vlan45
+           ip address 10.0.45.4 255.255.255.0
+           no shutdown
+          !
+          ip route 0.0.0.0 0.0.0.0 10.0.34.30
+          !
+          line con 0
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           length 0
+           stopbits 1
+          !
+          line vty 0 4
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           no login
+           length 0
+           transport input all
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n7
+    image_definition: null
+    label: L3SW-4
+    node_definition: ioll2-xe
+    parameters: {}
+    ram: null
+    tags: []
+    x: 480
+    y: 160
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+      - id: i5
+        label: Ethernet1/0
+        mac_address: null
+        type: physical
+        slot: 4
+  - boot_disk_size: null
+    configuration: []
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: true
+    id: n8
+    image_definition: null
+    label: sw-mgmt
+    node_definition: unmanaged_switch
+    parameters: {}
+    ram: null
+    tags: []
+    x: 200
+    y: 0
+    interfaces:
+      - id: i0
+        label: port0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i1
+        label: port1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i2
+        label: port2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i3
+        label: port3
+        mac_address: null
+        type: physical
+        slot: 3
+      - id: i4
+        label: port4
+        mac_address: null
+        type: physical
+        slot: 4
+      - id: i5
+        label: port5
+        mac_address: null
+        type: physical
+        slot: 5
+      - id: i6
+        label: port6
+        mac_address: null
+        type: physical
+        slot: 6
+      - id: i7
+        label: port7
+        mac_address: null
+        type: physical
+        slot: 7
+  - boot_disk_size: null
+    configuration:
+      - name: openstack/latest/user_data
+        content: |-
+          config system global
+              set admintimeout 480
+              set alias "FortiGate-32"
+              set hostname "FortiGate-32"
+          end
+          config system interface
+              edit "port1"
+                  set vdom "root"
+                  set mode dhcp
+                  set allowaccess ping https ssh http telnet fgfm
+                  set type physical
+                  set snmp-index 1
+              next
+          end
+          config system password-policy
+              set status disable
+          end
+          config system admin
+              edit "admin"
+                  set accprofile "super_admin"
+                  set vdom "root"
+                  set password "Passw0rd!"
+              next
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n9
+    image_definition: fortigate-7-0-19
+    label: FortiGate-32
+    node_definition: fortigate
+    parameters: {}
+    ram: null
+    tags: []
+    x: 320
+    y: 240
+    interfaces:
+      - id: i0
+        label: p1
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i1
+        label: p2
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i2
+        label: p3
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i3
+        label: p4
+        mac_address: null
+        type: physical
+        slot: 3
+      - id: i4
+        label: p5
+        mac_address: null
+        type: physical
+        slot: 4
+links:
+  - id: l0
+    n1: n3
+    n2: n7
+    i1: i4
+    i2: i1
+    conditioning: {}
+    label: FortiGate-31-p5<->L3SW-4-Ethernet0/0
+  - id: l1
+    n1: n7
+    n2: n0
+    i1: i5
+    i2: i0
+    conditioning: {}
+    label: L3SW-4-Ethernet1/0<->Web-53-eth0
+  - id: l2
+    n1: n8
+    n2: n3
+    i1: i0
+    i2: i0
+    conditioning: {}
+    label: sw-mgmt-port0<->FortiGate-31-p1
+  - id: l3
+    n1: n9
+    n2: n7
+    i1: i4
+    i2: i2
+    conditioning: {}
+    label: FortiGate-32-p5<->L3SW-4-Ethernet0/1
+  - id: l4
+    n1: n3
+    n2: n9
+    i1: i2
+    i2: i2
+    conditioning: {}
+    label: FortiGate-31-p3<->FortiGate-32-p3
+  - id: l5
+    n1: n2
+    n2: n9
+    i1: i3
+    i2: i3
+    conditioning: {}
+    label: L3SW-2-Ethernet0/2<->FortiGate-32-p4
+  - id: l6
+    n1: n2
+    n2: n3
+    i1: i2
+    i2: i3
+    conditioning: {}
+    label: L3SW-2-Ethernet0/1<->FortiGate-31-p4
+  - id: l7
+    n1: n3
+    n2: n9
+    i1: i1
+    i2: i1
+    conditioning: {}
+    label: FortiGate-31-p2<->FortiGate-32-p2
+  - id: l8
+    n1: n7
+    n2: n1
+    i1: i3
+    i2: i0
+    conditioning: {}
+    label: L3SW-4-Ethernet0/2<->Web-51-eth0
+  - id: l9
+    n1: n4
+    n2: n2
+    i1: i0
+    i2: i1
+    conditioning: {}
+    label: Desktop-1-eth0<->L3SW-2-Ethernet0/0
+  - id: l10
+    n1: n8
+    n2: n9
+    i1: i1
+    i2: i0
+    conditioning: {}
+    label: sw-mgmt-port1<->FortiGate-32-p1
+  - id: l11
+    n1: n7
+    n2: n6
+    i1: i4
+    i2: i0
+    conditioning: {}
+    label: L3SW-4-Ethernet0/3<->Web-52-eth0
+  - id: l12
+    n1: n8
+    n2: n5
+    i1: i2
+    i2: i0
+    conditioning: {}
+    label: sw-mgmt-port2<->external (pd-lab)-port
+lab:
+  description: '[FortiGate]HA構成'
+  notes: ''
+  title: '[FortiGate]HA構成'
+  version: 0.3.0
