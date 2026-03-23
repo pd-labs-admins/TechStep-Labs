@@ -586,79 +586,79 @@ links:
     i1: i2
     i2: i1
     conditioning: {}
-    label: dev1-Ethernet0/1<->dev2-Ethernet0/0
+    label: RT1-Ethernet0/1<->RT2-Ethernet0/0
   - id: l1
     n1: n0
     n2: n2
     i1: i0
     i2: i3
     conditioning: {}
-    label: SW-A-port0<->dev1-Ethernet0/2
+    label: SW-A-port0<->RT1-Ethernet0/2
   - id: l2
     n1: n0
     n2: n6
     i1: i1
     i2: i3
     conditioning: {}
-    label: SW-A-port1<->dev2-Ethernet0/2
+    label: SW-A-port1<->RT2-Ethernet0/2
   - id: l3
     n1: n0
     n2: n5
     i1: i2
     i2: i3
     conditioning: {}
-    label: SW-A-port2<->dev3-Ethernet0/2
+    label: SW-A-port2<->RT3-Ethernet0/2
   - id: l4
     n1: n0
     n2: n7
     i1: i3
     i2: i1
     conditioning: {}
-    label: SW-A-port3<->dev99-ens3
+    label: SW-A-port3<->Ubuntu-ens3
   - id: l5
     n1: n3
     n2: n1
     i1: i2
     i2: i1
     conditioning: {}
-    label: dev4-Ethernet0/1<->dev5-Ethernet0/0
+    label: RT4-Ethernet0/1<->RT5-Ethernet0/0
   - id: l6
     n1: n6
     n2: n5
     i1: i2
     i2: i1
     conditioning: {}
-    label: dev2-Ethernet0/1<->dev3-Ethernet0/0
+    label: RT2-Ethernet0/1<->RT3-Ethernet0/0
   - id: l7
     n1: n4
     n2: n7
     i1: i0
     i2: i0
     conditioning: {}
-    label: Internet-port<->dev99-ens2
+    label: Internet-port<->Ubuntu-ens2
   - id: l8
     n1: n5
     n2: n3
     i1: i2
     i2: i1
     conditioning: {}
-    label: dev3-Ethernet0/1<->dev4-Ethernet0/0
+    label: RT3-Ethernet0/1<->RT4-Ethernet0/0
   - id: l9
     n1: n0
     n2: n1
     i1: i4
     i2: i3
     conditioning: {}
-    label: SW-A-port4<->dev5-Ethernet0/2
+    label: SW-A-port4<->RT5-Ethernet0/2
   - id: l10
     n1: n0
     n2: n3
     i1: i5
     i2: i3
     conditioning: {}
-    label: SW-A-port5<->dev4-Ethernet0/2
+    label: SW-A-port5<->RT4-Ethernet0/2
 lab:
-  description: '[IOS]5台(OSPF)＋Linux＋外部接続'
+  description: '[応用]AnsibleとRobotFrameworkを使ったネットワーク自動化'
   notes: ''
-  title: ' [応用]AnsibleとRobotFrameworkを使ったネットワーク自動化'
+  title: '[応用]AnsibleとRobotFrameworkを使ったネットワーク自動化'
   version: 0.3.0
