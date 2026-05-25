@@ -3,53 +3,6 @@ smart_annotations: []
 nodes:
   - boot_disk_size: null
     configuration:
-      - name: user-data
-        content: |-
-          #cloud-config
-          hostname: dev99
-          manage_etc_hosts: True
-          system_info:
-            default_user:
-              name: cisco
-          password: cisco
-          chpasswd: { expire: False }
-          ssh_pwauth: True
-          ssh_authorized_keys:
-            - your-ssh-pubkey-line-goes-here
-      - name: network-config
-        content: |-
-          version: 2
-          ethernets:
-            ens2:
-              addresses:
-                - 192.168.0.99/24
-              dhcp4: false
-    cpu_limit: null
-    cpus: null
-    data_volume: null
-    hide_links: false
-    id: n0
-    image_definition: null
-    label: dev99
-    node_definition: ubuntu
-    parameters: {}
-    priority: null
-    pyats:
-      username: null
-      password: null
-      enable_password: null
-    ram: null
-    tags: []
-    x: 160
-    y: 0
-    interfaces:
-      - id: i0
-        label: ens2
-        mac_address: null
-        type: physical
-        slot: 0
-  - boot_disk_size: null
-    configuration:
       - name: ios_config.txt
         content: |-
           hostname dev1
@@ -85,7 +38,7 @@ nodes:
     cpus: null
     data_volume: null
     hide_links: false
-    id: n1
+    id: n0
     image_definition: null
     label: dev1
     node_definition: iol-xe
@@ -161,7 +114,7 @@ nodes:
     cpus: null
     data_volume: null
     hide_links: false
-    id: n2
+    id: n1
     image_definition: null
     label: dev3
     node_definition: iol-xe
@@ -255,7 +208,7 @@ nodes:
     cpus: null
     data_volume: null
     hide_links: false
-    id: n3
+    id: n2
     image_definition: null
     label: dev2
     node_definition: ioll2-xe
@@ -294,32 +247,79 @@ nodes:
         mac_address: null
         type: physical
         slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: user-data
+        content: |-
+          #cloud-config
+          hostname: dev99
+          manage_etc_hosts: True
+          system_info:
+            default_user:
+              name: cisco
+          password: cisco
+          chpasswd: { expire: False }
+          ssh_pwauth: True
+          ssh_authorized_keys:
+            - your-ssh-pubkey-line-goes-here
+      - name: network-config
+        content: |-
+          version: 2
+          ethernets:
+            ens2:
+              addresses:
+                - 192.168.0.99/24
+              dhcp4: false
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n3
+    image_definition: null
+    label: dev99
+    node_definition: ubuntu
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 160
+    y: 0
+    interfaces:
+      - id: i0
+        label: ens2
+        mac_address: null
+        type: physical
+        slot: 0
 links:
   - id: l0
-    n1: n1
-    n2: n3
-    i1: i2
-    i2: i1
-    conditioning: {}
-    label: dev1-Ethernet0/1<->dev2-Ethernet0/0
-  - id: l1
-    n1: n0
-    n2: n3
-    i1: i0
-    i2: i3
-    conditioning: {}
-    label: dev99-ens2<->dev2-Ethernet0/2
-  - id: l2
-    n1: n3
-    n2: n2
+    n1: n2
+    n2: n1
     i1: i2
     i2: i1
     conditioning: {}
     label: dev2-Ethernet0/1<->dev3-Ethernet0/0
+  - id: l1
+    n1: n0
+    n2: n2
+    i1: i2
+    i2: i1
+    conditioning: {}
+    label: dev1-Ethernet0/1<->dev2-Ethernet0/0
+  - id: l2
+    n1: n3
+    n2: n2
+    i1: i0
+    i2: i3
+    conditioning: {}
+    label: dev99-ens2<->dev2-Ethernet0/2
 lab:
-  description: '[IOS]ローカルSPAN'
+  description: '[IOS-L2]ローカルSPAN'
   notes: ''
-  title: '[IOS]ローカルSPAN'
+  title: '[IOS-L2]ローカルSPAN'
   node_staging:
     enabled: false
     start_remaining: true
