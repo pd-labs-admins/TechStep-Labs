@@ -1,0 +1,538 @@
+annotations: []
+smart_annotations: []
+nodes:
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          hostname dev13
+          !
+          no ip domain lookup
+          !
+          interface Ethernet0/0
+           shutdown
+          !
+          interface Ethernet0/1
+           ip address 192.168.0.13 255.255.255.0
+           no shutdown
+          !
+          interface Ethernet0/2
+           shutdown
+          !
+          interface Ethernet0/3
+           shutdown
+          !
+          ip route 0.0.0.0 0.0.0.0 192.168.0.254
+          !
+          line con 0
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           length 0
+           stopbits 1
+          !
+          line vty 0 4
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           no login
+           length 0
+           transport input all
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n0
+    image_definition: null
+    label: dev13
+    node_definition: iol-xe
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 0
+    y: 320
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          hostname dev12
+          !
+          no ip domain lookup
+          !
+          interface Ethernet0/0
+           shutdown
+          !
+          interface Ethernet0/1
+           ip address 192.168.0.12 255.255.255.0
+           no shutdown
+          !
+          interface Ethernet0/2
+           shutdown
+          !
+          interface Ethernet0/3
+           shutdown
+          !
+          ip route 0.0.0.0 0.0.0.0 192.168.0.254
+          !
+          line con 0
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           length 0
+           stopbits 1
+          !
+          line vty 0 4
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           no login
+           length 0
+           transport input all
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n1
+    image_definition: null
+    label: dev12
+    node_definition: iol-xe
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 0
+    y: 160
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          hostname dev3
+          !
+          no ip domain lookup
+          !
+          interface Ethernet0/0
+           shutdown
+          !
+          interface Ethernet0/1
+           ip address 100.0.0.3 255.255.255.0
+           no shutdown
+          !
+          interface Ethernet0/2
+           shutdown
+          !
+          interface Ethernet0/3
+           shutdown
+          !
+          line con 0
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           length 0
+           stopbits 1
+          !
+          line vty 0 4
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           no login
+           length 0
+           transport input all
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n2
+    image_definition: null
+    label: dev3
+    node_definition: iol-xe
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 480
+    y: 160
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration: []
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n3
+    image_definition: null
+    label: sw1
+    node_definition: unmanaged_switch
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 160
+    y: 160
+    interfaces:
+      - id: i0
+        label: port0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i1
+        label: port1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i2
+        label: port2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i3
+        label: port3
+        mac_address: null
+        type: physical
+        slot: 3
+      - id: i4
+        label: port4
+        mac_address: null
+        type: physical
+        slot: 4
+      - id: i5
+        label: port5
+        mac_address: null
+        type: physical
+        slot: 5
+      - id: i6
+        label: port6
+        mac_address: null
+        type: physical
+        slot: 6
+      - id: i7
+        label: port7
+        mac_address: null
+        type: physical
+        slot: 7
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          hostname dev11
+          !
+          no ip domain lookup
+          !
+          interface Ethernet0/0
+           shutdown
+          !
+          interface Ethernet0/1
+           ip address 192.168.0.11 255.255.255.0
+           no shutdown
+          !
+          interface Ethernet0/2
+           shutdown
+          !
+          interface Ethernet0/3
+           shutdown
+          !
+          ip route 0.0.0.0 0.0.0.0 192.168.0.254
+          !
+          line con 0
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           length 0
+           stopbits 1
+          !
+          line vty 0 4
+           exec-timeout 300 0
+           privilege level 15
+           logging synchronous
+           no login
+           length 0
+           transport input all
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n4
+    image_definition: null
+    label: dev11
+    node_definition: iol-xe
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 0
+    y: 0
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: day0-config
+        content: |-
+          hostname dev2
+          !
+          enable password Passw0rd!
+          !
+          interface Management0/0
+           shutdown
+          !
+          interface GigabitEthernet0/0
+           no shutdown
+           nameif inside
+           security-level 100
+           ip address 192.168.0.254 255.255.255.0
+          !
+          interface GigabitEthernet0/1
+           no shutdown
+           nameif outside
+           security-level 0
+           ip address 100.0.0.254 255.255.255.0
+          !
+          clock timezone JST 9
+          !
+          object network OBJ_LAN
+           subnet 192.168.0.0 255.255.255.0
+          object network OBJ_192.168.0.12_PUBLIC
+           host 100.0.0.12
+          object network OBJ_192.168.0.12
+           host 192.168.0.12
+          !
+          no pager
+          !
+          logging enable
+          logging timestamp
+          logging buffer-size 512000
+          logging buffered debugging
+          !
+          object network OBJ_LAN
+           nat (inside,outside) dynamic interface
+          object network OBJ_192.168.0.12
+           nat (inside,outside) dynamic OBJ_192.168.0.12_PUBLIC
+          !
+          aaa authentication ssh console LOCAL
+          aaa authentication telnet console LOCAL
+          !
+          telnet 0.0.0.0 0.0.0.0 management
+          telnet timeout 60
+          !
+          ssh timeout 60
+          ssh version 2
+          ssh key-exchange group dh-group14-sha256
+          ssh 0.0.0.0 0.0.0.0 management
+          !
+          console timeout 60
+          !
+          crypto key generate rsa modulus 2048 noconfirm
+          !
+          fixup protocol icmp
+          !
+          policy-map global_policy
+           class inspection_default
+            inspect icmp
+          !
+          no service call-home
+          clear config call-home
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n5
+    image_definition: null
+    label: dev2
+    node_definition: asav
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 320
+    y: 160
+    interfaces:
+      - id: i0
+        label: Management0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i1
+        label: GigabitEthernet0/0
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i2
+        label: GigabitEthernet0/1
+        mac_address: null
+        type: physical
+        slot: 2
+links:
+  - id: l0
+    n1: n0
+    n2: n3
+    i1: i2
+    i2: i0
+    conditioning: {}
+    label: dev13-Ethernet0/1<->sw1-port0
+  - id: l1
+    n1: n3
+    n2: n5
+    i1: i1
+    i2: i1
+    conditioning: {}
+    label: sw1-port1<->dev2-GigabitEthernet0/0
+  - id: l2
+    n1: n1
+    n2: n3
+    i1: i2
+    i2: i2
+    conditioning: {}
+    label: dev12-Ethernet0/1<->sw1-port2
+  - id: l3
+    n1: n4
+    n2: n3
+    i1: i2
+    i2: i3
+    conditioning: {}
+    label: dev11-Ethernet0/1<->sw1-port3
+  - id: l4
+    n1: n5
+    n2: n2
+    i1: i2
+    i2: i2
+    conditioning: {}
+    label: dev2-GigabitEthernet0/1<->dev3-Ethernet0/1
+lab:
+  description: "[ASA]NAT"
+  notes: ""
+  title: "[ASA]NAT"
+  node_staging:
+    enabled: false
+    start_remaining: true
+    abort_on_failure: false
+  version: 0.3.1
