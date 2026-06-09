@@ -9,9 +9,9 @@ smart_annotations:
     tag_size: 14
     group_distance: 400
     thickness: 1
-    border_style: ''
-    fill_color: '#A7A8AA80'
-    border_color: '#00000080'
+    border_style: ""
+    fill_color: "#A7A8AA80"
+    border_color: "#00000080"
     z_index: 2
   - tag: serial:2099
     is_on: true
@@ -22,9 +22,9 @@ smart_annotations:
     tag_size: 14
     group_distance: 400
     thickness: 1
-    border_style: ''
-    fill_color: '#4B4D4F80'
-    border_color: '#00000080'
+    border_style: ""
+    fill_color: "#4B4D4F80"
+    border_color: "#00000080"
     z_index: 3
   - tag: vnc:2002
     is_on: true
@@ -35,9 +35,9 @@ smart_annotations:
     tag_size: 14
     group_distance: 400
     thickness: 1
-    border_style: ''
-    fill_color: '#D5006D80'
-    border_color: '#00000080'
+    border_style: ""
+    fill_color: "#D5006D80"
+    border_color: "#00000080"
     z_index: 1
 nodes:
   - boot_disk_size: null
@@ -317,7 +317,7 @@ links:
     conditioning: {}
     label: external-port<->ubuntu99-ens3
 lab:
-  description: '[Ubuntu]Proxy検証構成'
-  notes: ''
-  title: '[Ubuntu]Proxy検証構成'
+  description: "[Linux]Proxy検証構成"
+  notes: ""
+  title: "[Linux]Proxy検証構成"
   version: 0.3.0
