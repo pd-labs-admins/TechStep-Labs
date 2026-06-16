@@ -1,0 +1,382 @@
+annotations: []
+smart_annotations: []
+nodes:
+  - boot_disk_size: null
+    configuration: []
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n0
+    image_definition: null
+    label: Switch
+    node_definition: unmanaged_switch
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 160
+    y: 0
+    interfaces:
+      - id: i0
+        label: port0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i1
+        label: port1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i2
+        label: port2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i3
+        label: port3
+        mac_address: null
+        type: physical
+        slot: 3
+      - id: i4
+        label: port4
+        mac_address: null
+        type: physical
+        slot: 4
+      - id: i5
+        label: port5
+        mac_address: null
+        type: physical
+        slot: 5
+      - id: i6
+        label: port6
+        mac_address: null
+        type: physical
+        slot: 6
+      - id: i7
+        label: port7
+        mac_address: null
+        type: physical
+        slot: 7
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |
+          hostname dev2
+          !
+          interface Ethernet0/0
+           ip address 10.0.0.101 255.255.255.0
+           no shutdown
+          !
+          line con 0
+           exec-timeout 0
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n1
+    image_definition: null
+    label: dev2
+    node_definition: iol-xe
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 320
+    y: 0
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |
+          hostname dev1
+          !
+          ip domain name lab.test
+          !
+          username localadmin password 0 LocalPassw0rd!
+          enable password EnablePassw0rd!
+          !
+          interface Ethernet0/0
+           ip address 10.0.0.11 255.255.255.0
+           no shutdown
+          !
+          line vty 0 4
+           login local
+           transport input ssh
+          !
+          crypto key generate rsa modulus 2048
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n2
+    image_definition: null
+    label: dev1
+    node_definition: iol-xe
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 0
+    y: 0
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: clients.conf
+        content: |-
+          client ALL-NETWORK {
+              ipaddr = *
+              secret = SharedSecretKey-123
+              require_message_authenticator = no
+              nas_type = other
+          }
+      - name: radiusd.conf
+        content: |-
+          #
+          # FreeRADIUS Version 3.2.7 を想定
+          #
+
+          #
+          # 変数
+          #
+          # mods-enabled/files から参照される変数の定義
+          raddbdir = /etc/freeradius/3.0
+          confdir = ${raddbdir}
+          modconfdir = ${confdir}/mods-config
+
+          #
+          # ログ
+          #
+          log {
+              #  標準出力 (stdout)にログを出力
+              destination = stdout
+
+              # stderr と stdout に出力される重要メッセージをハイライト
+              colourise = yes
+
+              # リクエストに含まれる User-Name の情報をログに記録
+              stripped_names = yes
+
+              # 全ての認証結果をログに記録
+              auth = yes
+
+              # 認証リクエストと共にパスワードを記録
+              # auth_badpass - パスワードが拒否された場合に記録
+              # auth_goodpass - パスワードが正しい場合に記録
+              auth_badpass = yes
+              auth_goodpass = yes
+          }
+
+          # NAD (Network Access Device)の情報を別ファイルに定義しているため読み込み
+          $INCLUDE clients.conf
+
+          #
+          # モジュールの読み込み
+          #
+          modules {
+              # ドキュメントの参考リンクは Version 4.0.0
+              # 備考: モジュールの情報はReference Documentationのセクションに「4.0.0 Devel」から追加されている模様
+              #
+              # Files Module :: The FreeRADIUS project - Documentation
+              # https://www.freeradius.org/documentation/freeradius-server/4.0.0/reference/raddb/mods-available/files.html
+              $INCLUDE mods-enabled/files
+
+              # PAP Module :: The FreeRADIUS project - Documentation
+              # https://www.freeradius.org/documentation/freeradius-server/4.0.0/reference/raddb/mods-available/pap.html
+              $INCLUDE mods-enabled/pap
+          }
+
+          #
+          # Virutal Server
+          #
+          # モジュールとしては読み込まず、必要な設定のみを直書き
+          #$INCLUDE sites-enabled/
+
+          server default {
+              # 認証リクエストを受け取る設定
+              listen {
+                  type = auth
+                  ipaddr = *
+                  port = 1812
+              }
+
+              # 認証要求パケットが届いた際の処理フロー
+              authorize {
+                  # users ファイルを検索
+                  files
+
+                  # 「NADから送られてきた User-Password」と「users ファイル内の Cleartext-Password」の比較準備
+                  pap
+              }
+
+              # 実際にパスワードが正しいか検証するセクション
+              authenticate {
+                  # PAP認証の場合の処理
+                  Auth-Type PAP {
+                      pap
+                  }
+              }
+          }
+      - name: users
+        content: |-
+          raduser Cleartext-Password := "RadPassw0rd!"
+
+          radadmin Cleartext-Password := "RadPassw0rd!"
+              Cisco-AVPair = "shell:priv-lvl=15"
+      - name: boot.sh
+        content: |-
+          # insert more commands here
+          ip addr flush dev eth0
+          ip address add dev eth0 10.0.0.201/24
+          ip link set dev eth0 up
+
+          echo '==== freeradius -v ====' > /dev/console
+          freeradius -v > /dev/console
+          echo '=======================' > /dev/console
+          #
+          # keep the next line to indicate that the machine is ready
+          echo "READY" >/dev/console
+          exit 0
+      - name: mounts
+        content: |-
+          # Can map a volume with radius server data into the container
+          # it. By default, only type=volume is allowed, see
+          # /etc/default/docker-shim.env
+          # Note: Volumes must exist to be usable and can be created via
+          # "docker volume create radiusdata" where radiusdata is the name
+          #
+          # type=volume,source=radiusdata,target=/var/somedir
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n3
+    image_definition: null
+    label: dev99
+    node_definition: radius
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 160
+    y: -160
+    interfaces:
+      - id: i0
+        label: eth0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i1
+        label: eth1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i2
+        label: eth2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i3
+        label: eth3
+        mac_address: null
+        type: physical
+        slot: 3
+links:
+  - id: l0
+    n1: n2
+    n2: n0
+    i1: i1
+    i2: i0
+    conditioning: {}
+    label: dev1-Ethernet0/0<->Switch-port0
+  - id: l1
+    n1: n1
+    n2: n0
+    i1: i1
+    i2: i1
+    conditioning: {}
+    label: dev2-Ethernet0/0<->Switch-port1
+  - id: l2
+    n1: n3
+    n2: n0
+    i1: i0
+    i2: i2
+    conditioning: {}
+    label: dev99-eth0<->Switch-port2
+lab:
+  description: '[IOS]RADIUS'
+  notes: ''
+  title: '[IOS]RADIUS'
+  node_staging:
+    enabled: false
+    start_remaining: true
+    abort_on_failure: false
+  version: 0.3.1
