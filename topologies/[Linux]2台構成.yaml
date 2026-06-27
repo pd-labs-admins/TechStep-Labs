@@ -1,0 +1,184 @@
+annotations: []
+smart_annotations: []
+nodes:
+  - boot_disk_size: null
+    configuration:
+      - name: user-data
+        content: |-
+          #cloud-config
+          hostname: dev99
+          manage_etc_hosts: True
+          disable_root: false
+          system_info:
+            default_user:
+              name: root
+          password: Passw0rd!
+          users:
+            - default
+            - name: cisco
+              shell: /bin/bash
+              ssh_pwauth: True
+              sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+          chpasswd:
+            expire: false
+            list: |
+              root:Passw0rd!
+              cisco:cisco
+          ssh_pwauth: True
+          timezone: Asia/Tokyo
+          write_files:
+            - path: /etc/netplan/50-cloud-init.yaml
+              content: |
+                network:
+                  version: 2
+                  ethernets:
+                    ens2:
+                      addresses:
+                        - 10.0.0.99/24
+                      dhcp4: false
+                    ens3:
+                      dhcp4: true
+          runcmd:
+            - sudo netplan apply
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n0
+    image_definition: null
+    label: dev99
+    node_definition: ubuntu
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 160
+    y: 0
+    interfaces:
+      - id: i0
+        label: ens2
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i1
+        label: ens3
+        mac_address: null
+        type: physical
+        slot: 1
+  - boot_disk_size: null
+    configuration:
+      - name: user-data
+        content: |-
+          #cloud-config
+          hostname: dev1
+          manage_etc_hosts: True
+          disable_root: false
+          system_info:
+            default_user:
+              name: root
+          password: Passw0rd!
+          users:
+            - default
+            - name: cisco
+              shell: /bin/bash
+              ssh_pwauth: True
+              sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+          chpasswd:
+            expire: false
+            list: |
+              root:Passw0rd!
+              cisco:cisco
+          ssh_pwauth: True
+          timezone: Asia/Tokyo
+          write_files:
+            - path: /etc/netplan/50-cloud-init.yaml
+              content: |
+                network:
+                  version: 2
+                  ethernets:
+                    ens2:
+                      addresses:
+                        - 10.0.0.1/24
+                      dhcp4: false
+          runcmd:
+            - sudo netplan apply
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n1
+    image_definition: null
+    label: dev1
+    node_definition: ubuntu
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 320
+    y: 0
+    interfaces:
+      - id: i0
+        label: ens2
+        mac_address: null
+        type: physical
+        slot: 0
+  - boot_disk_size: null
+    configuration:
+      - name: default
+        content: System Bridge
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n2
+    image_definition: null
+    label: external
+    node_definition: external_connector
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 0
+    y: 0
+    interfaces:
+      - id: i0
+        label: port
+        mac_address: null
+        type: physical
+        slot: 0
+links:
+  - id: l0
+    n1: n0
+    n2: n1
+    i1: i1
+    i2: i0
+    conditioning: {}
+    label: dev99-ens3<->dev1-ens2
+  - id: l1
+    n1: n2
+    n2: n0
+    i1: i0
+    i2: i0
+    conditioning: {}
+    label: external-port<->dev99-ens2
+lab:
+  description: '[Linux]2台構成'
+  notes: ''
+  title: '[Linux]2台構成'
+  node_staging:
+    enabled: false
+    start_remaining: true
+    abort_on_failure: false
+  version: 0.3.1
