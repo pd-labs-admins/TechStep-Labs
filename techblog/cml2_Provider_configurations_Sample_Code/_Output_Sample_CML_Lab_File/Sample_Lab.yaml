@@ -1,0 +1,61 @@
+annotations: []
+smart_annotations: []
+nodes:
+  - boot_disk_size: null
+    configuration:
+      - name: user-data
+        content: |-
+          #cloud-config
+          hostname: ubuntu01
+          manage_etc_hosts: True
+          system_info:
+            default_user:
+              name: cisco
+          password: cisco
+          chpasswd: { expire: False }
+          ssh_pwauth: True
+          ssh_authorized_keys:
+            - your-ssh-pubkey-line-goes-here
+      - name: network-config
+        content: |-
+          #network-config
+          network:
+            version: 2
+            ethernets:
+              ens2:
+                dhcp4: true
+                optional: true
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n0
+    image_definition: null
+    label: ubuntu01
+    node_definition: ubuntu
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 0
+    y: 0
+    interfaces:
+      - id: i0
+        label: ens2
+        mac_address: null
+        type: physical
+        slot: 0
+links: []
+lab:
+  description: For Testing
+  notes: ''
+  title: Sample_Lab
+  node_staging:
+    enabled: false
+    start_remaining: true
+    abort_on_failure: false
+  version: 0.3.1
